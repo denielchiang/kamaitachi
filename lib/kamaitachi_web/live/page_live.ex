@@ -1,4 +1,7 @@
 defmodule KamaitachiWeb.PageLive do
+  @moduledoc """
+  Live view default pagelive
+  """
   use KamaitachiWeb, :live_view
 
   @impl true

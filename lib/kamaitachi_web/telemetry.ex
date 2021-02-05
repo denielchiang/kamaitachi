@@ -1,4 +1,7 @@
 defmodule KamaitachiWeb.Telemetry do
+  @moduledoc """
+  Phoenix default telemetry for live view admin panel
+  """
   use Supervisor
   import Telemetry.Metrics
 

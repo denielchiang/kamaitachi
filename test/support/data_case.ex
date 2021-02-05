@@ -16,6 +16,8 @@ defmodule Kamaitachi.DataCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   using do
     quote do
       alias Kamaitachi.Repo
@@ -28,10 +30,10 @@ defmodule Kamaitachi.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Kamaitachi.Repo)
+    :ok = Sandbox.checkout(Kamaitachi.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Kamaitachi.Repo, {:shared, self()})
+      Sandbox.mode(Kamaitachi.Repo, {:shared, self()})
     end
 
     :ok

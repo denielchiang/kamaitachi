@@ -66,7 +66,12 @@ defmodule Kamaitachi.MixProject do
       {:absinthe_phoenix, "~> 2.0"},
 
       # Encryption
-      {:bcrypt_elixir, "~> 2.3"}
+      {:bcrypt_elixir, "~> 2.3"},
+
+      # Linting 
+      {:credo, "~> 1.5", only: [:dev, :test], override: true},
+      {:credo_envvar, "~> 0.1.4", only: [:dev, :test], runtime: false},
+      {:credo_naming, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
   end
 

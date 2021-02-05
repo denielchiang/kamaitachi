@@ -1,4 +1,8 @@
 defmodule Kamaitachi.Accounts.User do
+  @moduledoc """
+  The User table schema.
+  """
+
   use Ecto.Schema
 
   import Ecto.Changeset

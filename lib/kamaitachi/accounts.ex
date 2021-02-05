@@ -39,6 +39,5 @@ defmodule Kamaitachi.Accounts do
     |> Repo.update()
   end
 
-  def list_users(),
-    do: User |> Repo.all()
+  def list_users, do: User |> Repo.all()
 end
