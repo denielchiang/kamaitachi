@@ -16,9 +16,9 @@ defmodule Kamaitachi.Application do
       # Start the Endpoint (http/https)
       KamaitachiWeb.Endpoint,
       # Absinthe Pubsub
-      {Absinthe.Subscription, KamaitachiWeb.Endpoint}
+      {Absinthe.Subscription, KamaitachiWeb.Endpoint},
       # Start a worker by calling: Kamaitachi.Worker.start_link(arg)
-      # {Kamaitachi.Worker, arg}
+      Kamaitachi.Processes.Worker
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

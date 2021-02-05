@@ -37,6 +37,6 @@ defmodule Kamaitachi.Processes.Worker do
 
   defp calculate_next_schedule do
     # Calculate hour - [ms * sec]
-    1000 * 10
+    1000 * 1
   end
 end
