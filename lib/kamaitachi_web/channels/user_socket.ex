@@ -1,4 +1,6 @@
 defmodule KamaitachiWeb.UserSocket do
+  @moduledoc false
+
   alias Kamaitachi.Accounts
 
   use Phoenix.Socket
