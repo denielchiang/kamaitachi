@@ -24,7 +24,7 @@ To start your Phoenix server:
   * Create and migrate your database with `mix ecto.setup`
   * Install Node.js dependencies with `npm install` inside the `assets` directory
   * Start Phoenix endpoint with `mix phx.server`
-  * Open the [GraphiQL Interface](http://localhost:4000/v1/graphiql) and import [this workspace)(./doc/kamaitachi_test_data/subscription_ui_history.json)
+  * Open the [GraphiQL Interface](http://localhost:4000/v1/graphiql) and import [this workspace)(./test/kamaitachi_graphql/subscription_ui_history.json)
   * Run the `mutation - accountsLogin`
   * Run the `query - accountsMe` and copy the token returned
   * Change the ws url token on `subscription - accountsUserCount` and run the query

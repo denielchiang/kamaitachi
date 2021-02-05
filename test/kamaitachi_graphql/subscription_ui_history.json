@@ -1,0 +1,112 @@
+{
+  "key": "graphiql",
+  "lastId": 4,
+  "tabIds": [
+    "tab1",
+    "tab2",
+    "tab3",
+    "tab4"
+  ],
+  "closedTabs": [],
+  "defaultUrl": "http://localhost:4000/v1/graphiql",
+  "defaultWebsocketUrl": "ws://localhost:4000/socket",
+  "defaultQuery": "",
+  "defaultVariables": "",
+  "defaultProxy": false,
+  "defaultHeaders": [],
+  "usedUrls": [
+    "http://localhost:4000/v1/graphql",
+    "http://localhost:4000/v1/graphiql"
+  ],
+  "recentHeaders": [],
+  "maxTabHistory": 20,
+  "maxUrlHistory": 20,
+  "maxHistory": 20,
+  "savedQueries": [],
+  "activeId": "tab4",
+  "tabs": [
+    {
+      "id": "tab1",
+      "name": "mutation - accountsLogin",
+      "url": "http://localhost:4000/v1/graphql",
+      "websocketUrl": "ws://localhost:4000/socket",
+      "proxy": false,
+      "headers": [],
+      "collapsed": false,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "mutation {\n  accountsLogin(email: \"deniel@jay-creative.com\", password: \"12345678Ab\") {\n    user {\n      name\n      id\n    }\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "mutation {\n  accountsLogin(email: \"nuno@coletiv.com\", password: \"12345678Ab\") {\n    user {\n      name\n      id\n    }\n  }\n}",
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  accountsLogin(email: \\\"nuno@coletiv.com\\\", password: \\\"12345678Ab\\\") {\\n    user {\\n      name\\n      id\\n    }\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab2",
+      "name": "mutation - accountsLogout",
+      "url": "http://localhost:4000/v1/graphql",
+      "websocketUrl": "ws://localhost:4000/socket",
+      "proxy": false,
+      "headers": [],
+      "collapsed": false,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "mutation {\n  accountsLogout {\n    user {\n      name\n    }\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "mutation {\n  accountsLogout {\n    user {\n      name\n    }\n  }\n}",
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  accountsLogout {\\n    user {\\n      name\\n    }\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab3",
+      "name": "query - accountsMe",
+      "url": "http://localhost:4000/v1/graphql",
+      "websocketUrl": "ws://localhost:4000/socket",
+      "proxy": false,
+      "headers": [],
+      "collapsed": false,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  accountsMe {\n    user {\n      name\n    }\n    token\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  accountsMe {\n    user {\n      name\n    }\n    token\n  }\n}",
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  accountsMe {\\n    user {\\n      name\\n    }\\n    token\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab4",
+      "name": "subscription - accountsUserCount",
+      "url": "http://localhost:4000/v1/graphql",
+      "websocketUrl": "ws://localhost:4000/socket?token=XXXXX",
+      "proxy": false,
+      "headers": [],
+      "collapsed": false,
+      "maxHistory": 20,
+      "history": [],
+      "graphiql:query": "subscription {\n  accountsUserCount\n}",
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"subscription {\\n  accountsUserCount\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    }
+  ]
+}
