@@ -71,7 +71,10 @@ defmodule Kamaitachi.MixProject do
       # Linting 
       {:credo, "~> 1.5", only: [:dev, :test], override: true},
       {:credo_envvar, "~> 0.1.4", only: [:dev, :test], runtime: false},
-      {:credo_naming, "~> 1.0", only: [:dev, :test], runtime: false}
+      {:credo_naming, "~> 1.0", only: [:dev, :test], runtime: false},
+
+      # Security check
+      {:sobelow, "~> 0.11.0", only: [:dev, :test], runtime: true}
     ]
   end
 
