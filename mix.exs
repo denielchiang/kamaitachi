@@ -25,8 +25,8 @@ defmodule Kamaitachi.MixProject do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_), do: ["lib"]
+  defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
+  defp elixirc_paths(_), do: ["lib", "web"]
 
   # Specifies your project dependencies.
   #
@@ -74,7 +74,11 @@ defmodule Kamaitachi.MixProject do
       {:credo_naming, "~> 1.0", only: [:dev, :test], runtime: false},
 
       # Security check
-      {:sobelow, "~> 0.11.0", only: [:dev, :test], runtime: true}
+      {:sobelow, "~> 0.11.0", only: [:dev, :test], runtime: true},
+
+      # Test factories
+      {:ex_machina, "~> 2.5", only: :test},
+      {:faker, "~> 0.16.0", only: :test}
     ]
   end
 

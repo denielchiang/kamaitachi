@@ -29,7 +29,7 @@ defmodule Kamaitachi.Accounts.User do
     |> cast(attrs, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> unique_constraint(:email)
-    |> password_strength(:password)
+    |> validate_length(:password, min: 12)
     |> password_hash(:password)
   end
 
@@ -41,8 +41,8 @@ defmodule Kamaitachi.Accounts.User do
     |> cast(attrs, @required_fields ++ @optional_fields)
     |> unique_constraint(:email)
     |> password_validate()
-    |> password_strength(:password)
-    |> password_strength(:new_password)
+    |> validate_length(:password, min: 12)
+    |> validate_length(:new_password, min: 12)
     |> password_hash(:new_password)
   end
 
@@ -63,18 +63,4 @@ defmodule Kamaitachi.Accounts.User do
   end
 
   defp password_validate(changeset), do: changeset
-
-  defp password_strength(%Changeset{valid?: true} = changeset, field) do
-    case is_password_strength?(changeset.changes[field]) do
-      true -> changeset
-      false -> changeset |> add_error(field, Responses.get(:user_password_weak).code)
-    end
-  end
-
-  defp password_strength(changeset, _), do: changeset
-
-  defp is_password_strength?(nil), do: false
-
-  defp is_password_strength?(password),
-    do: Regex.match?(~r/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[\S]{8,}$/, password)
 end
