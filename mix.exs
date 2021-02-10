@@ -7,6 +7,19 @@ defmodule Kamaitachi.MixProject do
       version: "0.1.0",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
+      test_paths: ["test"],
+      test_pattern: "**/*_test.exs",
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test,
+        "check.linter": :test,
+        "check.code.format": :test,
+        "check.code.security": :test,
+        "check.code.coverage": :test
+      ],
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -78,7 +91,10 @@ defmodule Kamaitachi.MixProject do
 
       # Test factories
       {:ex_machina, "~> 2.5", only: :test},
-      {:faker, "~> 0.16.0", only: :test}
+      {:faker, "~> 0.16.0", only: :test},
+
+      # Test coverage
+      {:excoveralls, "~> 0.13.4"}
     ]
   end
 
@@ -90,10 +106,14 @@ defmodule Kamaitachi.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      compile: ["compile --warnings-as-errors"],
+      test: ["ecto.create --quiet", "ecto.migrate", "test"],
+      "check.linter": ["credo --strict"],
+      "check.code.format": ["format --dry-run --check-formatted"],
+      "check.code.security": ["sobelow --config"],
+      "check.code.coverage": ["coveralls"]
     ]
   end
 end
