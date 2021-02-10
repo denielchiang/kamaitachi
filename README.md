@@ -18,15 +18,32 @@ Now we need to deploy to VPS and tyried to recreate the livestreaming for servra
 
 ## Development
 
-### Linting
-[Credo](https://hexdocs.pm/credo/overview.html) is a static code analysis tool for the Elixir language with a focus on teaching and code consistency.
 
-  * Run ` mix credo list --strict` to check if suggestion make sense to you or not
+### Linting
+[Credo](https://hexdocs.pm/credo/overview.html) - A static code analysis tool for the Elixir language with a focus on teaching and code consistency.
+
+  * Run `mix check.linter` to check if suggestion make sense to you or not
 
 ### Security check
-[Sobelow](https://hexdocs.pm/sobelow/readme.html#content) is a security-focused static analysis tool for the Phoenix framework. For security researchers, it is a useful tool for getting a quick view of points-of-interest. For project maintainers, it can be used to prevent the introduction of a number of common vulnerabilities.
 
-  * Run ` mix sobelow --config` for presetting config [from here](https://elixirforum.com/t/working-content-security-policy-for-phoenix-channels/11443)
+[Sobelow](https://hexdocs.pm/sobelow/readme.html#content) - A security-focused static analysis tool for the Phoenix framework. For security researchers, it is a useful tool for getting a quick view of points-of-interest. For project maintainers, it can be used to prevent the introduction of a number of common vulnerabilities.
+
+  * Run ` mix check.code.security` with presetting configuration that come [from here](https://elixirforum.com/t/working-content-security-policy-for-phoenix-channels/11443)
+
+### Compile
+[Mix compile](https://hexdocs.pm/mix/Mix.Tasks.Compile.Elixir.html#module-command-line-options) - This part can be adjusted if need, preset to **treats warnings in the current project as errors and return a non-zero exit code** first
+
+  * Run `mix compile` with preset compiler option
+
+### Format
+[Mix format](https://hexdocs.pm/mix/master/Mix.Tasks.Format.html#module-task-specific-options) - Preset options with dry-run and check-format as presetting
+
+  * Run `mix check.code.format` for checking format by dry-run
+
+### Test coverage
+[ExConveralls](https://github.com/parroty/excoveralls) - CLI Tools for calculating test case coverage
+
+  * Run `mix check.code.coverage` to get coverage reporting in CLI
 
 ### To start your Phoenix server:
 
