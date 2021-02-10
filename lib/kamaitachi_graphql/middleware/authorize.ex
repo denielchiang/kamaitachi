@@ -5,9 +5,10 @@ defmodule KamaitachiGraphQL.Middleware.Authorize do
   alias Kamaitachi.General.Responses
 
   def call(resolution, role) do
-    with true <- correct_role?("any", Atom.to_string(role) || "any") do
-      resolution
-    else
+    case correct_role?("any", Atom.to_string(role) || "any") do
+      true ->
+        resolution
+
       _ ->
         resolution
         |> Absinthe.Resolution.put_result({:error, Responses.get(:user_unauthorized)})

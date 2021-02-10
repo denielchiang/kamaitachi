@@ -7,6 +7,19 @@ defmodule Kamaitachi.MixProject do
       version: "0.1.0",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
+      test_paths: ["test"],
+      test_pattern: "**/*_test.exs",
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test,
+        "check.linter": :test,
+        "check.code.format": :test,
+        "check.code.security": :test,
+        "check.code.coverage": :test
+      ],
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -25,8 +38,8 @@ defmodule Kamaitachi.MixProject do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_), do: ["lib"]
+  defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
+  defp elixirc_paths(_), do: ["lib", "web"]
 
   # Specifies your project dependencies.
   #
@@ -66,7 +79,22 @@ defmodule Kamaitachi.MixProject do
       {:absinthe_phoenix, "~> 2.0"},
 
       # Encryption
-      {:bcrypt_elixir, "~> 2.3"}
+      {:bcrypt_elixir, "~> 2.3"},
+
+      # Linting 
+      {:credo, "~> 1.5", only: [:dev, :test], override: true},
+      {:credo_envvar, "~> 0.1.4", only: [:dev, :test], runtime: false},
+      {:credo_naming, "~> 1.0", only: [:dev, :test], runtime: false},
+
+      # Security check
+      {:sobelow, "~> 0.11.0", only: [:dev, :test], runtime: true},
+
+      # Test factories
+      {:ex_machina, "~> 2.5", only: :test},
+      {:faker, "~> 0.16.0", only: :test},
+
+      # Test coverage
+      {:excoveralls, "~> 0.13.4"}
     ]
   end
 
@@ -78,10 +106,14 @@ defmodule Kamaitachi.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      compile: ["compile --warnings-as-errors"],
+      test: ["ecto.create --quiet", "ecto.migrate", "test"],
+      "check.linter": ["credo --strict"],
+      "check.code.format": ["format --dry-run --check-formatted"],
+      "check.code.security": ["sobelow --config"],
+      "check.code.coverage": ["coveralls"]
     ]
   end
 end

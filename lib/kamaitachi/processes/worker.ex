@@ -19,7 +19,7 @@ defmodule Kamaitachi.Processes.Worker do
 
   def handle_info(:reschedule, state) do
     Accounts.list_users()
-    |> Enum.map(fn %{id: id} ->
+    |> Enum.each(fn %{id: id} ->
       Absinthe.Subscription.publish(KamaitachiWeb.Endpoint, Enum.random(1..10),
         accounts_user_count: "user_count:#{id}"
       )
@@ -37,6 +37,6 @@ defmodule Kamaitachi.Processes.Worker do
 
   defp calculate_next_schedule do
     # Calculate hour - [ms * sec]
-    1000 * 1
+    1000 * 10
   end
 end

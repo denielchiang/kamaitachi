@@ -5,11 +5,11 @@ defmodule KamaitachiWeb.Endpoint do
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
-    domain: Application.get_env(:kamaitachi, :cookie_domain),
+    domain: Application.compile_env(:kamaitachi, :cookie_domain),
     store: :cookie,
-    secure: Application.get_env(:kamaitachi, :cookie_secure),
+    secure: Application.compile_env(:kamaitachi, :cookie_secure),
     max_age: 60 * 60 * 24 * 31,
-    key: Application.get_env(:kamaitachi, :cookie_key),
+    key: Application.compile_env(:kamaitachi, :cookie_key),
     signing_salt: "wja+mGFK"
   ]
 
