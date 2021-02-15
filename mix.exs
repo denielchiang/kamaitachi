@@ -94,7 +94,10 @@ defmodule Kamaitachi.MixProject do
       {:faker, "~> 0.16.0", only: :test},
 
       # Test coverage
-      {:excoveralls, "~> 0.13.4"}
+      {:excoveralls, "~> 0.13.4"},
+
+      # Mux
+      {:mux, "~> 1.9.0"}
     ]
   end
 
@@ -109,7 +112,7 @@ defmodule Kamaitachi.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       compile: ["compile --warnings-as-errors"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"],
+      test: ["ecto.create --quiet", "ecto.migrate", "run test/test_seeds.exs", "test"],
       "check.linter": ["credo --strict"],
       "check.code.format": ["format --dry-run --check-formatted"],
       "check.code.security": ["sobelow --config"],
