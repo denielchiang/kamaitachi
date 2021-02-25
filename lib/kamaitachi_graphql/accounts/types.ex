@@ -11,6 +11,7 @@ defmodule KamaitachiGraphQL.Accounts.Types do
   object :session do
     field :user, :user
     field :token, :string
+    field :live_stream, :live_stream
   end
 
   object :user do
@@ -19,6 +20,25 @@ defmodule KamaitachiGraphQL.Accounts.Types do
     field :name, :string
 
     import_fields(:timestamps)
+  end
+
+  object :live_stream do
+    field :created_at, :naive_datetime
+    field :id, :id
+    field :new_asset_settings, :asset_setting
+    field :playback_ids, list_of(:playback_id)
+    field :reconnect_window, :integer
+    field :status, :string
+    field :stream_key, :string
+  end
+
+  object :asset_setting do
+    field :playback_policies, list_of(:string)
+  end
+
+  object :playback_id do
+    field :id, :id
+    field :policy, :string
   end
 
   object :accounts_queries do
