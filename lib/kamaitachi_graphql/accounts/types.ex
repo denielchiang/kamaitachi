@@ -11,7 +11,7 @@ defmodule KamaitachiGraphQL.Accounts.Types do
   object :session do
     field :user, :user
     field :token, :string
-    field :live_stream, :live_stream
+    field :live_stream, non_null(:live_stream)
   end
 
   object :user do
