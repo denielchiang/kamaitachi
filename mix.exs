@@ -97,7 +97,7 @@ defmodule Kamaitachi.MixProject do
       {:excoveralls, "~> 0.13.4"},
 
       # Mux
-      {:mux_wrapper, git: "git@github.com:denielchiang/mux_wrapper.git", tag: "0.1-stable"}
+      {:mux_wrapper, git: "git@github.com:denielchiang/mux_wrapper.git", tag: "v0.1.3"}
     ]
   end
 

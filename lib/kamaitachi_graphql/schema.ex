@@ -24,6 +24,7 @@ defmodule KamaitachiGraphQL.Schema do
   query do
     import_fields(:application_queries)
     import_fields(:accounts_queries)
+    import_fields(:live_stream_queries)
   end
 
   mutation do
