@@ -37,5 +37,19 @@ defmodule KamaitachiGraphQL.LiveStream.Types do
         end
       end)
     end
+
+    field :delete_live_stream, :response do
+      arg(:live_stream_id, non_null(:string))
+
+      resolve(fn %{live_stream_id: live_stream_id}, _ ->
+        case MuxWrapper.delete_live_stream(MuxWrapper.client(), live_stream_id) do
+          :ok ->
+            {:ok, Responses.get(:delete_stream_successed)}
+
+          _ ->
+            {:error, Responses.get(:delete_stream_failed)}
+        end
+      end)
+    end
   end
 end
