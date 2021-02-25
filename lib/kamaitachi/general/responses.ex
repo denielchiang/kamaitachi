@@ -23,7 +23,9 @@ defmodule Kamaitachi.General.Responses do
     [
       user_unauthorized: "User is not authorized",
       user_password_invalid: "User invalid password",
-      user_password_weak: "User invalid password strength"
+      user_password_weak: "User invalid password strength",
+      complete_failed: "Live Stream can't be completed",
+      complete_successed: "Live Stream has been completed"
     ][response]
   end
 end
