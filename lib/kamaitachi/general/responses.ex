@@ -25,9 +25,9 @@ defmodule Kamaitachi.General.Responses do
       user_password_invalid: "User invalid password",
       user_password_weak: "User invalid password strength",
       complete_failed: "Live stream can't be completed",
+      delete_stream_failed: "Live stream can't be deleted",
       complete_successed: "Live stream has be completed",
-      delete_stream_successed: "Live stream has be deleted",
-      delete_stream_failed: "Live stream can't be deleted"
+      delete_stream_successed: "Live stream has be deleted"
     ][response]
   end
 end

@@ -2,7 +2,7 @@ defmodule KamaitachiGraphQL.LiveStream.Types do
   @moduledoc false
   use Absinthe.Schema.Notation
 
-  alias Kamaitachi.General.Responses
+  alias KamaitachiGraphQL.LiveStream.Resolver
 
   object :live_stream do
     field :created_at, :naive_datetime
@@ -26,30 +26,12 @@ defmodule KamaitachiGraphQL.LiveStream.Types do
   object :live_strem_mutations do
     field :complete_live_stream, :response do
       arg(:live_stream_id, non_null(:string))
-
-      resolve(fn %{live_stream_id: live_stream_id}, _ ->
-        case MuxWrapper.complete_live_stream(MuxWrapper.client(), live_stream_id) do
-          :ok ->
-            {:ok, Responses.get(:complete_successed)}
-
-          _ ->
-            {:error, Responses.get(:complete_failed)}
-        end
-      end)
+      resolve(&Resolver.complete_live_stream/3)
     end
 
     field :delete_live_stream, :response do
       arg(:live_stream_id, non_null(:string))
-
-      resolve(fn %{live_stream_id: live_stream_id}, _ ->
-        case MuxWrapper.delete_live_stream(MuxWrapper.client(), live_stream_id) do
-          :ok ->
-            {:ok, Responses.get(:delete_stream_successed)}
-
-          _ ->
-            {:error, Responses.get(:delete_stream_failed)}
-        end
-      end)
+      resolve(&Resolver.delete_live_stream/3)
     end
   end
 end
