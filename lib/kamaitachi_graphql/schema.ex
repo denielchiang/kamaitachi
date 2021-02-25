@@ -14,8 +14,6 @@ defmodule KamaitachiGraphQL.Schema do
 
   import_types(KamaitachiGraphQL.Accounts.Types)
 
-  import_types(KamaitachiGraphQL.Lives.Types)
-
   def middleware(middleware, _field, %{identifier: :mutation}),
     do: middleware ++ [Middleware.Errors]
 
@@ -28,7 +26,6 @@ defmodule KamaitachiGraphQL.Schema do
 
   mutation do
     import_fields(:accounts_mutations)
-    import_fields(:live_mutations)
   end
 
   subscription do
