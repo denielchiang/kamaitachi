@@ -34,7 +34,8 @@ defmodule KamaitachiGraphQL.Accounts.Resolver do
              KamaitachiWeb.Endpoint,
              "user sesion",
              user.id
-           )
+           ),
+         live_stream: MuxWrapper.client() |> MuxWrapper.create_live_stream()
        }}
 
   def me(_, _, _),
