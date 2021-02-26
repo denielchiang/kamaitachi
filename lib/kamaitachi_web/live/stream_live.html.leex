@@ -1,0 +1,6 @@
+<%= for stream <- @streams do %>
+  <div>Stream ID: <%= stream.id %></div>
+  <%= for playback_id <- stream.playback_ids do %>
+    <div><video src="https://stream.mux.com/<%= playback_id.id %>.m3u8"></video></div>
+  <% end %>
+<% end %>
