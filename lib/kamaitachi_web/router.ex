@@ -32,7 +32,7 @@ defmodule KamaitachiWeb.Router do
   scope "/", KamaitachiWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    live "/", StreamLive, :index
   end
 
   # Other scopes may use custom stacks.
