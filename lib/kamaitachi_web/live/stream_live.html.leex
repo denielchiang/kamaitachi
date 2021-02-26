@@ -1,3 +1,6 @@
 <%= for stream <- @streams do %>
-<div><%= todo.title %></div>
+  <div>Stream ID: <%= stream.id %></div>
+  <%= for playback_id <- stream.playback_ids do %>
+    <div>Playback ID:<%= playback_id.id %></div>
+  <% end %>
 <% end %>

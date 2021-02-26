@@ -1,16 +1,19 @@
 defmodule KamaitachiWeb.StreamLive do
   use KamaitachiWeb, :live_view
 
+  alias Kamaitachi.Streams
+
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, streams: all_streams())}
+    Streams.subscribe()
+
+    {:ok, fetch(socket)}
   end
 
-  def render(assigns) do
-    ~L"Rendering LiveView"
+  def handle_info({Streams, [:streams | _], _}, socket) do
+    {:noreply, fetch(socket)}
   end
 
-  defp all_streams do
-    MuxWrapper.client()
-    |> MuxWrapper.list_all_live_stream()
+  defp fetch(socket) do
+    assign(socket, streams: Streams.list_all_live_streams())
   end
 end
