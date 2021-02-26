@@ -44,7 +44,7 @@ defmodule KamaitachiGraphQL.Accounts.Resolver do
     stream
   end
 
-  def me(_, _, _),
+  def me(_, _, nil),
     do: {:ok, %{user: nil}}
 
   def all_users(_, _, _),
