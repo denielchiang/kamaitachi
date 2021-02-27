@@ -18,12 +18,12 @@ config :logger, level: :info
 
 config :kamaitachi, Kamaitachi.Repo,
   database: "kamaitachi",
-  maintenance_database: "defaultdb"
+  maintenance_database: "defaultdb",
   username: "kamaitachi-app",
   password: "vsues16r3f5eozzt",
   hostname: "private-kamaitachi-dev-do-user-8786788-0.b.db.ondigitalocean.com",
   port: "25060"
- 
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
