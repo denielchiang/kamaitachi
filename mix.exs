@@ -111,7 +111,7 @@ defmodule Kamaitachi.MixProject do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      compile: ["compile --warnings-as-errors"],
+      # compile: ["compile --warnings-as-errors"],
       test: ["ecto.create --quiet", "ecto.migrate", "run test/test_seeds.exs", "test"],
       "check.linter": ["credo --strict"],
       "check.code.format": ["format --dry-run --check-formatted"],
