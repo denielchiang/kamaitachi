@@ -1,4 +1,5 @@
 # Kamaitachi
+
 A Livestreaming service tnat either provide livestreamer host their livestreaming by geographically or be a spectator watch livestreaming or history playback video.
 
 ## Infra
@@ -17,7 +18,6 @@ Now we need to deploy to VPS and tyried to recreate the livestreaming for servra
   * Price increment curve
 
 ## Development
-
 
 ### Linting
 [Credo](https://hexdocs.pm/credo/overview.html) - A static code analysis tool for the Elixir language with a focus on teaching and code consistency.
@@ -59,7 +59,53 @@ Now we need to deploy to VPS and tyried to recreate the livestreaming for servra
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
+
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+
+## Deploy
+
+
+Using Digital Ocean or other VPS that provide Ubuntu 18.04TLS with __root__.
+
+- Genereate ssh key for GitHub and copy publish key and paste into github settins -> deploy key added
+
+        ssh-keygen -t rsa -b 4096 -C "{email}"
+        cat .ssh/id_ras.pub
+
+- Clone source code
+        
+        # Enter project source folder
+        cd ~/opt
+
+        # Download source code
+        git clone git@github.com:denielchiang/kamaitachi.git
+
+- Install Postgres
+
+  Using Managed Database
+
+- Install dep libs
+
+        # Install deps
+        ./bin/build_env.sh
+
+- Build release
+
+        # build release
+        ./bin/build.sh
+
+- Nginx settings
+
+        # Install Nginx
+        apt-get -qq install nginx
+        # Copy paste bin/nginx.conf settings
+        cp bin/nginx.conf /etc/nginx/conf.d/kamaitachi.conf
+
+- Run start
+        
+        # Remote start server
+        ssh root@kamaitachi_server '~/opt/kamaitachi/_build/prod/rel/kamaitachi/bin/kamaitachi start'
+
 ## Learn more
 
   * Official website: https://www.phoenixframework.org/
