@@ -27,8 +27,8 @@ apt-get -qq install automake autoconf libreadline-dev libncurses-dev libssl-dev 
 	libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev
 
 echo "===> Installing ASDF Erlang plugin deps"
-apt-get -qq install build-essential libncurses5-dev libgtk3.0-gtk3-dev libgl1-mesa-dev \
-	libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop
+apt-get -qq install build-essential autoconf m4 libncurses5-dev libwxgtk3.0-gtk3-dev \
+    libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev openjdk-11-jdk
 
 echo "===> Installing ASDF Node.js plugin deps"
 apt-get -qq install dirmngr gpg
