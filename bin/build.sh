@@ -3,8 +3,6 @@
 set -o errexit
 
 export SECRET_KEY_BASE=`mix phx.gen.secret`
-read -p "Enter Database URL: "  database_url
-export DATABASE_URL=$database_url
 
 # Initial setup
 mix local.hex --force
