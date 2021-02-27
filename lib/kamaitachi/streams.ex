@@ -32,7 +32,7 @@ defmodule Kamaitachi.Streams do
   end
 
   def delete_live_stream(live_stream_id) do
-    get_client
+    get_client()
     |> MuxWrapper.delete_live_stream(live_stream_id)
     |> packaging()
     |> broadcast_change([:streams, :deleted])
