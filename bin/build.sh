@@ -7,6 +7,7 @@ read -p "Enter Database URL: "  database_url
 export DATABASE_URL=$database_url
 
 # Initial setup
+mix local.hex --force
 mix deps.get --only prod
 MIX_ENV=prod mix compile
 
