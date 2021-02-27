@@ -16,6 +16,10 @@ config :kamaitachi, KamaitachiWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :kamaitachi, Kamaitachi.Repo,
+  database: "kamaitachi",
+  maintenance_database: "defaultdb"
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
