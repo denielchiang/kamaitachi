@@ -16,13 +16,13 @@ config :mux,
 config :kamaitachi,
   ecto_repos: [Kamaitachi.Repo],
   app_domain: "http://localhost:3000",
-  cookie_domain: "kamaitachi.com",
+  cookie_domain: "localhost",
   cookie_secure: false,
   cookie_key: "_kamaitachi_key_localhost"
 
 # Configures the endpoint
 config :kamaitachi, KamaitachiWeb.Endpoint,
-  url: [host: "kamaitachi.com"],
+  url: [host: "localhost"],
   secret_key_base: "vmGtEKKai9XBoFhC7bmIs8XrA0xOGUrbF5cTqQl8zWTaQQsBD0/RlSeYENilqESw",
   render_errors: [view: KamaitachiWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Kamaitachi.PubSub,
