@@ -1,4 +1,7 @@
 defmodule KamaitachiWeb.StreamLive do
+  @moduledoc """
+  Live view for streaming list page
+  """
   use KamaitachiWeb, :live_view
 
   alias Kamaitachi.Streams

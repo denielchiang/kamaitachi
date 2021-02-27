@@ -4,7 +4,7 @@ defmodule KamaitachiGraphQL.Middleware.Authorize do
 
   alias Kamaitachi.General.Responses
 
-  def call(resolution = %{context: %{current_user: %Kamaitachi.Accounts.User{}}}, _role),
+  def call(%{context: %{current_user: %Kamaitachi.Accounts.User{}}} = resolution, _role),
     do: resolution
 
   def call(resolution, _role) do

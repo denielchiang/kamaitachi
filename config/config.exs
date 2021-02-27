@@ -7,16 +7,22 @@
 # General application configuration
 use Mix.Config
 
+# Mux development token
+config :mux,
+  access_token_id: "42852dc7-db15-47d2-84f1-12b9db64f59d",
+  access_token_secret:
+    "8iRjy1lSAuDfqBANiPn6yI27PRsUN8Id2aeQq+Ky4mUgFed1IlXSpor1n7IFSXBlY6OSoEFZOKQ"
+
 config :kamaitachi,
   ecto_repos: [Kamaitachi.Repo],
   app_domain: "http://localhost:3000",
-  cookie_domain: "localhost",
+  cookie_domain: "kamaitachi.com",
   cookie_secure: false,
   cookie_key: "_kamaitachi_key_localhost"
 
 # Configures the endpoint
 config :kamaitachi, KamaitachiWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: "kamaitachi.com"],
   secret_key_base: "vmGtEKKai9XBoFhC7bmIs8XrA0xOGUrbF5cTqQl8zWTaQQsBD0/RlSeYENilqESw",
   render_errors: [view: KamaitachiWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Kamaitachi.PubSub,

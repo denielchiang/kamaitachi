@@ -38,13 +38,13 @@ defmodule KamaitachiGraphQL.Accounts.Resolver do
          live_stream: create_live_stream()
        }}
 
-  defp create_live_stream() do
+  defp create_live_stream do
     {:ok, stream} = Streams.create_live_stream()
 
     stream
   end
 
-  def me(_, _, nil),
+  def me(_, _, _),
     do: {:ok, %{user: nil}}
 
   def all_users(_, _, _),

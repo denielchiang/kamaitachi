@@ -2,8 +2,7 @@ defmodule KamaitachiGraphQL.LiveStream.Types do
   @moduledoc false
   use Absinthe.Schema.Notation
 
-  alias KamaitachiGraphQL.Middleware
-  alias KamaitachiGraphQL.LiveStream.Resolver
+  alias KamaitachiGraphQL.{LiveStream.Resolver, Middleware}
 
   object :live_stream do
     field :created_at, :naive_datetime

@@ -1,4 +1,7 @@
 defmodule Kamaitachi.Streams do
+  @moduledoc """
+  Live Streaming context that provide either API or liveview corresponding functions
+  """
   @topic inspect(__MODULE__)
 
   def subscribe do
@@ -11,12 +14,12 @@ defmodule Kamaitachi.Streams do
     {:ok, result}
   end
 
-  def list_all_live_streams() do
+  def list_all_live_streams do
     get_client()
     |> MuxWrapper.list_all_live_stream()
   end
 
-  def create_live_stream() do
+  def create_live_stream do
     get_client()
     |> MuxWrapper.create_live_stream()
     |> packaging()
@@ -29,13 +32,13 @@ defmodule Kamaitachi.Streams do
   end
 
   def delete_live_stream(live_stream_id) do
-    get_client()
+    get_client
     |> MuxWrapper.delete_live_stream(live_stream_id)
     |> packaging()
     |> broadcast_change([:streams, :deleted])
   end
 
-  defp get_client(), do: MuxWrapper.client()
+  defp get_client, do: MuxWrapper.client()
 
   defp packaging(%MuxWrapper.EmbeddedSchema.LiveStream{} = stream), do: {:ok, stream}
   defp packaging(:ok), do: {:ok, list_all_live_streams()}
