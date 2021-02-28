@@ -17,12 +17,15 @@ config :kamaitachi, KamaitachiWeb.Endpoint,
 config :logger, level: :info
 
 config :kamaitachi, Kamaitachi.Repo,
-  database: "kamaitachi",
   maintenance_database: "defaultdb",
+  database: "kamaitachi",
   username: "kamaitachi-app",
   password: "vsues16r3f5eozzt",
   hostname: "private-kamaitachi-dev-do-user-8786788-0.b.db.ondigitalocean.com",
-  port: "25060"
+  port: 25060,
+  ssl: true,
+  pool_size: 22,
+  show_sensitive_data_on_connection_error: true
 
 # ## SSL Support
 #
