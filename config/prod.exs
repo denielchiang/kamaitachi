@@ -18,6 +18,7 @@ config :logger, level: :info
 
 config :kamaitachi, Kamaitachi.Repo,
   database: "kamaitachi",
+  maintenance_database: "defaultdb",
   username: "kamaitachi_app",
   password: "iYUkWSpnBc93lX2L",
   hostname: "private-kamaitachi-db-do-user-8786788-0.b.db.ondigitalocean.com",
