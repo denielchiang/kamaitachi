@@ -19,6 +19,7 @@ config :logger, level: :info
 config :kamaitachi, Kamaitachi.Repo,
   maintenance_database: "defaultdb",
   database: "kamaitachi",
+  port: 25060,
   ssl: true,
   show_sensitive_data_on_connection_error: true
 
