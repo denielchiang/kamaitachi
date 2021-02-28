@@ -2,6 +2,8 @@
 # exit on error
 set -o errexit
 
+read -p "Enter Database URL: "  database_url
+export DATABASE_URL=$database_url
 export SECRET_KEY_BASE=`mix phx.gen.secret`
 
 # Initial setup

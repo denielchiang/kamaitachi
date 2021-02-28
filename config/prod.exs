@@ -16,16 +16,6 @@ config :kamaitachi, KamaitachiWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
-config :kamaitachi, Kamaitachi.Repo,
-  database: "kamaitachi",
-  maintenance_database: "defaultdb",
-  username: "doadmin",
-  password: "ai39f98eoox135q4",
-  hostname: "private-kamaitachi-db-do-user-8786788-0.b.db.ondigitalocean.com",
-  port: 25060,
-  ssl: true,
-  show_sensitive_data_on_connection_error: true
-
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

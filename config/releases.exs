@@ -12,8 +12,10 @@ database_url =
     """
 
 config :kamaitachi, Kamaitachi.Repo,
+  maintenance_database: "defaultdb",
   ssl: true,
   url: database_url,
+  show_sensitive_data_on_connection_error: true,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
 secret_key_base =
