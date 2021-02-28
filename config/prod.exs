@@ -19,12 +19,11 @@ config :logger, level: :info
 config :kamaitachi, Kamaitachi.Repo,
   database: "kamaitachi",
   maintenance_database: "defaultdb",
-  username: "doadmin",
-  password: "ai39f98eoox135q4",
+  username: "kamaitachi_app",
+  password: "sl1vn7gechhtsm0s",
   hostname: "private-kamaitachi-db-do-user-8786788-0.b.db.ondigitalocean.com",
   port: 25060,
   ssl: true,
-  pool_size: 22,
   show_sensitive_data_on_connection_error: true
 
 # ## SSL Support
