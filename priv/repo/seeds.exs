@@ -9,8 +9,12 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
-Kamaitachi.Repo.insert!(%Kamaitachi.Accounts.User{
-  name: "Den",
-  email: "deniel@jay-creative.com",
-  password_hash: Bcrypt.hash_pwd_salt("12345678Ab")
-})
+alias Kamaitachi.{Repo, Accounts.User}
+
+unless Repo.get_by(User, email: "deniel@jay-creative.com") do
+  Repo.insert!(%User{
+    name: "Den",
+    email: "deniel@jay-creative.com",
+    password_hash: Bcrypt.hash_pwd_salt("12345678Ab")
+  })
+end
