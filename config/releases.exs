@@ -13,6 +13,7 @@ database_url =
 
 config :kamaitachi, Kamaitachi.Repo,
   maintenance_database: "defaultdb",
+  database: "kamaitachi",
   ssl: true,
   url: database_url,
   show_sensitive_data_on_connection_error: true,
