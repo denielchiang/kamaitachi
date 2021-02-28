@@ -17,7 +17,6 @@ config :kamaitachi, KamaitachiWeb.Endpoint,
 config :logger, level: :info
 
 config :kamaitachi, Kamaitachi.Repo,
-  adapter: Ecto.Adapters.Postgres,
   database: "kamaitachi",
   username: "kamaitachi_app",
   password: "iYUkWSpnBc93lX2L",
