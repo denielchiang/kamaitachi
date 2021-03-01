@@ -2,7 +2,7 @@
 # exit on error
 set -o errexit
 
-read -p "Enter Database URL: "  database_url
+read -p "Enter Database URL: " database_url
 export DATABASE_URL=$database_url
 export SECRET_KEY_BASE=`mix phx.gen.secret`
 
@@ -24,4 +24,4 @@ mix phx.digest
 
 # Build the release and overwrite the existing release directory
 MIX_ENV=prod mix release --overwrite
-
+source ./build.sh
