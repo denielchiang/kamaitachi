@@ -18,7 +18,7 @@ config :logger, level: :info
 
 config :kamaitachi, Kamaitachi.Repo,
   username: "postgres",
-  passwordd: "postgres",
+  password: "postgres",
   maintenance_database: "defaultdb",
   hostname: "private-kamaitachi-db-do-user-8786788-0.b.db.ondigitalocean.com",
   database: "kamaitachi",
