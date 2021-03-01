@@ -17,7 +17,6 @@ config :kamaitachi, KamaitachiWeb.Endpoint,
 config :logger, level: :info
 
 config :kamaitachi, Kamaitachi.Repo,
-  adapter: Ecto.Adapters.Postgres,
   maintenance_database: "defaultdb",
   host: "private-kamaitachi-db-do-user-8786788-0.b.db.ondigitalocean.com",
   database: "kamaitachi",
