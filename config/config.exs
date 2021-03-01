@@ -15,7 +15,7 @@ config :mux,
 
 config :kamaitachi,
   ecto_repos: [Kamaitachi.Repo],
-  app_domain: "http://localhost:3000",
+  app_domain: "http://167.99.79.213:3000",
   cookie_domain: "localhost",
   cookie_secure: false,
   cookie_key: "_kamaitachi_key_localhost"
