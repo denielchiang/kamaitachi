@@ -17,12 +17,8 @@ config :kamaitachi, KamaitachiWeb.Endpoint,
 config :logger, level: :info
 
 config :kamaitachi, Kamaitachi.Repo,
-  username: "postgres",
-  password: "postgres",
   maintenance_database: "defaultdb",
-  hostname: "private-kamaitachi-db-do-user-8786788-0.b.db.ondigitalocean.com",
   database: "kamaitachi",
-  port: 25060,
   ssl: true,
   show_sensitive_data_on_connection_error: true
 
