@@ -14,23 +14,23 @@ config :mux,
     "8iRjy1lSAuDfqBANiPn6yI27PRsUN8Id2aeQq+Ky4mUgFed1IlXSpor1n7IFSXBlY6OSoEFZOKQ"
 
 config :kamaitachi,
-  ecto_repos: [Kamaitachi.Repo],
-  app_domain: "http://kamaitachi.site:3000",
   cookie_domain: "kamaitachi.site",
+  cookie_key: "_kamaitachi_key_",
   cookie_secure: false,
-  cookie_key: "_kamaitachi_key_localhost"
+  ecto_repos: [Kamaitachi.Repo]
 
 # Configures the endpoint
 config :kamaitachi, KamaitachiWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: System.get_env("HOSTNAME")],
   secret_key_base: "vmGtEKKai9XBoFhC7bmIs8XrA0xOGUrbF5cTqQl8zWTaQQsBD0/RlSeYENilqESw",
   render_errors: [view: KamaitachiWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Kamaitachi.PubSub,
+  check_origin: ["http://kamaitachi.site", "//*.kamaitachi.site"],
   live_view: [signing_salt: "ItOreYk1"]
 
 # CORS
 config :cors_plug,
-  origin: "*",
+  origin: ["http://localhost", "http://stage.kamaitachi.site", ~r/https?.*kamaitachi\d?\.site$/],
   max_age: 86400,
   methods: ["GET", "POST", "PUT", "DELETE"]
 

@@ -116,7 +116,9 @@ defmodule Kamaitachi.MixProject do
       "check.linter": ["credo --strict"],
       "check.code.format": ["format --dry-run --check-formatted"],
       "check.code.security": ["sobelow --config"],
-      "check.code.coverage": ["coveralls"]
+      "check.code.coverage": ["coveralls"],
+      stage: ["cmd ./bin/send_to_server.sh stage"],
+      prod: ["cmd ./bin/send_to_server.sh prod"]
     ]
   end
 end

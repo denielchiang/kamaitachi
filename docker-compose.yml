@@ -1,0 +1,20 @@
+version: "3.8"
+
+networks:
+    webnet:
+      driver: overlay
+      attachable: true # Needed in order to run custom commands in the container
+      
+services:
+  app:
+    image: deniel79/kamaitachi:0.1.0
+    ports:
+      - "80:4000"
+    env_file:
+      - config/docker.env
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - webnet
