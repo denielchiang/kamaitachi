@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "hls.js": "^0.14.17"
+  }
+}

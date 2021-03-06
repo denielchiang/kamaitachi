@@ -4,6 +4,8 @@ defmodule Kamaitachi.Streams do
   """
   @topic inspect(__MODULE__)
 
+  alias MuxWrapper.EmbeddedSchema.LiveStream
+
   def subscribe do
     Phoenix.PubSub.subscribe(Kamaitachi.PubSub, @topic)
   end
@@ -17,7 +19,11 @@ defmodule Kamaitachi.Streams do
   def list_all_live_streams do
     get_client()
     |> MuxWrapper.list_all_live_stream()
+    |> Enum.filter(&is_streaming_active?/1)
   end
+
+  defp is_streaming_active?(%LiveStream{status: "active"}), do: true
+  defp is_streaming_active?(_), do: false
 
   def create_live_stream do
     get_client()

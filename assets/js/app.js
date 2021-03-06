@@ -16,11 +16,39 @@ import "phoenix_html";
 import { Socket } from "phoenix";
 import NProgress from "nprogress";
 import { LiveSocket } from "phoenix_live_view";
+import jQuery from "jquery";
+import Hls from "hls.js";
 
 let csrfToken = document
     .querySelector("meta[name='csrf-token']")
     .getAttribute("content");
+
+let Hooks = {};
+Hooks.HLSUrl = {
+    initHLS() {
+        let hook = this;
+        var video = jQuery(hook.el).find("video")[0];
+        hook.genUrl(video);
+    },
+    mounted() {
+        this.initHLS();
+    },
+    genUrl(video) {
+        var playbackId = video.id;
+        var url = "https://stream.mux.com/" + playbackId + ".m3u8";
+
+        if (video.canPlayType("application/vnd.apple.mpegurl")) {
+            video.src = url;
+        } else if (Hls.isSupported()) {
+            // HLS.js-specific setup code
+            var hls = new Hls();
+            hls.loadSource(url);
+            hls.attachMedia(video);
+        }
+    },
+};
 let liveSocket = new LiveSocket("/live", Socket, {
+    hooks: Hooks,
     params: { _csrf_token: csrfToken },
 });
 
