@@ -18,6 +18,8 @@ defmodule KamaitachiWeb.Router do
     forward "/graphql", Absinthe.Plug,
       schema: KamaitachiGraphQL.Schema,
       before_send: {KamaitachiGraphQL.Context, :before_send}
+
+    post "/mux", MuxController, :create
   end
 
   pipeline :browser do

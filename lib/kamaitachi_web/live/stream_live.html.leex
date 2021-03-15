@@ -1,8 +1,11 @@
 <%= for stream <- @streams do %>
-  <div>Stream ID: <%= stream.id %></div>
-  <%= for playback_id <- stream.playback_ids do %>
-    <div id="<%= playback_id.id %>_div" phx-hook="HLSUrl" phx-update="ignore">
-      <video id="<%= playback_id.id %>" controls></video>
-    </div>
-  <% end %>
+  <div>
+    <div>Stream key: <%= stream.stream_key %></div>
+    <div>Status: <%= stream.status %></div>
+    <%= for playback_id <- stream.playback_ids do %>
+      <div id="<%= playback_id.id %>_div" phx-hook="HLSUrl" phx-update="ignore">
+        <video id="<%= playback_id.id %>" controls></video>
+      </div>
+    <% end %>
+  </div>
 <% end %>

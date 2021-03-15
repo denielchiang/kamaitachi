@@ -25,6 +25,22 @@ defmodule Kamaitachi.Streams do
   defp is_streaming_active?(%LiveStream{status: "active"}), do: true
   defp is_streaming_active?(_), do: false
 
+  def ready_live_stream(live_stream_id) do
+    get_client()
+    |> MuxWrapper.get_live_stream(live_stream_id)
+    |> take_one()
+    |> packaging()
+    |> broadcast_change([:streams, :started])
+  end
+
+  defp take_one([head | _tail]), do: head
+  defp take_one(live_stream), do: live_stream
+
+  def disable_live_stream do
+    packaging(:ok)
+    |> broadcast_change([:streams, :remove])
+  end
+
   def create_live_stream do
     get_client()
     |> MuxWrapper.create_live_stream()
