@@ -11,6 +11,7 @@ defmodule KamaitachiWeb.MuxController do
   @no_handle_event "Skiped this status..."
   @handle_ready "Video asset is avaliable to play and handled..."
   @handle_completed "Video asset is unavabliable from now and handled..."
+  @handle_failed "It our server issues cause this handling is failed..."
 
   @doc """
   Handle Mux webhooks(Example: https://docs.mux.com/guides/video/listen-for-webhooks)
@@ -21,6 +22,11 @@ defmodule KamaitachiWeb.MuxController do
 
       conn
       |> send_resp(201, msg)
+    else
+      :error ->
+        Logger.error("Mux pass in params: " <> inspect(params))
+
+        send_resp(conn, 500, @handle_failed)
     end
   end
 
