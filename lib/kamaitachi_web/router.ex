@@ -19,7 +19,7 @@ defmodule KamaitachiWeb.Router do
       schema: KamaitachiGraphQL.Schema,
       before_send: {KamaitachiGraphQL.Context, :before_send}
 
-    post "/mux", MuxController, :create
+    post "/mux", KamaitachiWeb.MuxController, :create
   end
 
   pipeline :browser do

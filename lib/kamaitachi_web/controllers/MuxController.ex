@@ -1,4 +1,6 @@
-defmodule MuxController do
+defmodule KamaitachiWeb.MuxController do
+  require Logger
+
   use KamaitachiWeb, :controller
 
   alias Kamaitachi.Streams
@@ -6,23 +8,35 @@ defmodule MuxController do
   @mux_status_complete "video.asset.live_stream_completed"
   @mux_status_ready "video.asset.ready"
 
+  @no_handle_event "Skiped this status..."
+  @handle_ready "Video asset is avaliable to play and handled..."
+  @handle_completed "Video asset is unavabliable from now and handled..."
+
   @doc """
   Handle Mux webhooks(Example: https://docs.mux.com/guides/video/listen-for-webhooks)
   """
   def create(conn, params) do
-    params
-    |> which_status()
+    with {:ok, msg} <- which_status(params) do
+      Logger.notice(msg)
 
-    conn
-    |> send_resp(201, "")
+      conn
+      |> send_resp(201, msg)
+    end
   end
 
-  defp which_status(%{"type" => @mux_status_complete}), do: broadcast_live_view(:delete)
+  defp which_status(%{"type" => @mux_status_complete}) do
+    broadcast_live_view(:delete)
 
-  defp which_status(%{"type" => @mux_status_ready} = params),
-    do: broadcast_live_view(:create, params)
+    {:ok, @handle_completed}
+  end
 
-  defp which_status(_params), do: nil
+  defp which_status(%{"type" => @mux_status_ready} = params) do
+    broadcast_live_view(:create, params)
+
+    {:ok, @handle_ready}
+  end
+
+  defp which_status(_params), do: {:ok, @no_handle_event}
 
   defp broadcast_live_view(:delete), do: Streams.disable_live_stream()
 
