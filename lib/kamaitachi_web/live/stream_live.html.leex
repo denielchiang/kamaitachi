@@ -1,4 +1,28 @@
-<%= for stream <- @streams do %>
+<%= link "Create Stream", to: "#", phx_click: "create_stream" %>
+<table class="table-layout: auto;" auto; width="100%">
+  <thead>
+    <tr>
+      <th>Stream ID</th>
+      <th>Stream key</th>
+      <th>Status</th>
+      <th>Operate</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= for stream <- @streams do %>
+    <tr>
+      <td><%= stream.id %></td>
+      <td><%= stream.stream_key %></td>
+      <td><%= stream.status %></td>
+      <td><%= link "Delete", to: "#",
+            phx_click: "delete_stream",
+            phx_value_id: stream.id %></td>
+    </tr>
+  <% end %>
+  </tbody>
+  </table>
+<hr>
+<%= for stream <- @on_airs do %>
   <div>
     <div>Stream key: <%= stream.stream_key %></div>
     <div>Status: <%= stream.status %></div>

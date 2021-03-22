@@ -16,6 +16,8 @@ defmodule Kamaitachi.Streams do
     {:ok, result}
   end
 
+  def all_streams, do: MuxWrapper.LiveStreams.list(get_client())
+
   def on_airs(params \\ %{}) do
     with {:ok, streams} <- MuxWrapper.LiveStreams.list(get_client(), params) do
       active =
@@ -47,8 +49,10 @@ defmodule Kamaitachi.Streams do
     do: MuxWrapper.LiveStreams.complete_live_stream(get_client(), live_stream_id)
 
   def delete_live_stream(live_stream_id) do
-    MuxWrapper.LiveStreams.delete_live_stream(get_client(), live_stream_id)
-    |> broadcast_change([:streams, :deleted])
+    with {:ok} <- MuxWrapper.LiveStreams.delete_live_stream(get_client(), live_stream_id) do
+      {:ok, %{}}
+      |> broadcast_change([:streams, :deleted])
+    end
   end
 
   defp get_client, do: MuxWrapper.client()

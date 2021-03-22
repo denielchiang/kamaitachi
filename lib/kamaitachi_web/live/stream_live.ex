@@ -17,8 +17,21 @@ defmodule KamaitachiWeb.StreamLive do
   end
 
   defp fetch(socket) do
-    {:ok, streams} = Streams.on_airs()
+    with {:ok, on_airs} <- Streams.on_airs(),
+         {:ok, all_streams} <- Streams.all_streams() do
+      assign(socket, streams: all_streams, on_airs: on_airs)
+    end
+  end
 
-    assign(socket, streams: streams)
+  def handle_event("delete_stream", %{"id" => id}, socket) do
+    Streams.delete_live_stream(id)
+
+    {:noreply, socket}
+  end
+
+  def handle_event("create_stream", _, socket) do
+    Streams.create_live_stream()
+
+    {:noreply, socket}
   end
 end
