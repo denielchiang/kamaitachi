@@ -5,10 +5,7 @@ defmodule KamaitachiGraphQL.LiveStream.Resolver do
 
   alias Kamaitachi.{General.Responses, Streams}
 
-  def list_all_stream(_, _, _) do
-    Streams.list_all_live_streams()
-    |> packaging()
-  end
+  def list_on_airs(params, _), do: Streams.on_airs(params)
 
   def complete_live_stream(_, %{live_stream_id: live_stream_id}, _) do
     Streams.complete_live_stream(live_stream_id)
@@ -27,5 +24,4 @@ defmodule KamaitachiGraphQL.LiveStream.Resolver do
     do: {:ok, Responses.get(:delete_stream_successed)}
 
   defp packaging(_, :delete), do: {:error, Responses.get(:delete_stream_failed)}
-  defp packaging(list) when is_list(list), do: {:ok, list}
 end

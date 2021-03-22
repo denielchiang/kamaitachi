@@ -24,10 +24,12 @@ defmodule KamaitachiGraphQL.LiveStream.Types do
   end
 
   object :live_stream_queries do
-    field :all_open_live, list_of(non_null(:live_stream)) do
-      middleware(Middleware.Authorize, :any)
+    field :list_on_airs, list_of(:live_stream) do
+      arg(:limit, :integer)
+      arg(:page, :integer)
 
-      resolve(&Resolver.list_all_stream/3)
+      middleware(Middleware.Authorize, :any)
+      resolve(&Resolver.list_on_airs/2)
     end
   end
 

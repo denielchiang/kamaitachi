@@ -17,6 +17,8 @@ defmodule KamaitachiWeb.StreamLive do
   end
 
   defp fetch(socket) do
-    assign(socket, streams: Streams.list_all_live_streams())
+    {:ok, streams} = Streams.on_airs()
+
+    assign(socket, streams: streams)
   end
 end
