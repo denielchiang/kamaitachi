@@ -6,7 +6,14 @@ defmodule KamaitachiGraphQL.Accounts.Resolver do
 
   def login(_, %{email: email, password: password}, _) do
     with {:ok, user} <- Accounts.authenticate_user(email, password) do
-      {:ok, %{user: user}}
+      {:ok,
+       %{
+         user: user,
+         token: get_token(user.id)
+       }}
+    else
+      {:error, _reason} ->
+        {:error, Responses.get(:user_authorize_failed)}
     end
   end
 
@@ -21,8 +28,6 @@ defmodule KamaitachiGraphQL.Accounts.Resolver do
   def register(_, params, _) do
     {status, _user} = Accounts.create_user(params)
 
-    IO.inspect(status)
-
     status
     |> packaging(:created)
   end
@@ -32,12 +37,7 @@ defmodule KamaitachiGraphQL.Accounts.Resolver do
       {:ok,
        %{
          user: user,
-         token:
-           Phoenix.Token.sign(
-             KamaitachiWeb.Endpoint,
-             "user sesion",
-             user.id
-           )
+         token: get_token(user.id)
        }}
 
   def me(_, _, _),
@@ -48,4 +48,12 @@ defmodule KamaitachiGraphQL.Accounts.Resolver do
 
   defp packaging(:ok, :created), do: {:ok, Responses.get(:user_regist_successed)}
   defp packaging(:error, :created), do: {:error, Responses.get(:user_regist_failed)}
+
+  defp get_token(user_id) do
+    Phoenix.Token.sign(
+      KamaitachiWeb.Endpoint,
+      "user sesion",
+      user_id
+    )
+  end
 end

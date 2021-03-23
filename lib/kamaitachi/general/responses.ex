@@ -8,7 +8,7 @@ defmodule Kamaitachi.General.Responses do
       nil ->
         %{
           code: "internal-error",
-          message: "Internal error"
+          message: "Internal error: Not in message table"
         }
 
       description ->
@@ -22,6 +22,7 @@ defmodule Kamaitachi.General.Responses do
   defp get_message(response) when is_atom(response) do
     [
       user_unauthorized: "User is not authorized",
+      user_authorize_failed: "User is invalid",
       user_password_invalid: "User invalid password",
       user_password_weak: "User invalid password strength",
       user_regist_successed: "User has been created",
