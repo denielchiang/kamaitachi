@@ -19,9 +19,12 @@ defmodule KamaitachiGraphQL.Accounts.Resolver do
   end
 
   def register(_, params, _) do
-    with {:ok, user} <- Accounts.create_user(params) do
-      {:ok, %{user: user}}
-    end
+    {status, _user} = Accounts.create_user(params)
+
+    IO.inspect(status)
+
+    status
+    |> packaging(:created)
   end
 
   def me(_, _, %{context: %{current_user: user}}),
@@ -42,4 +45,7 @@ defmodule KamaitachiGraphQL.Accounts.Resolver do
 
   def all_users(_, _, _),
     do: {:ok, Accounts.list_users()}
+
+  defp packaging(:ok, :created), do: {:ok, Responses.get(:user_regist_successed)}
+  defp packaging(:error, :created), do: {:error, Responses.get(:user_regist_failed)}
 end

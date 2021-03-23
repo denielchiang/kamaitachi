@@ -24,10 +24,12 @@ defmodule Kamaitachi.General.Responses do
       user_unauthorized: "User is not authorized",
       user_password_invalid: "User invalid password",
       user_password_weak: "User invalid password strength",
-      complete_failed: "Live stream can't be completed",
-      delete_stream_failed: "Live stream can't be deleted",
-      complete_successed: "Live stream has be completed",
-      delete_stream_successed: "Live stream has be deleted"
+      user_regist_successed: "User has been created",
+      user_regist_failed: "User can't be created",
+      complete_stream_failed: "Live stream can't be completed",
+      complete_stream_successed: "Live stream has be completed",
+      delete_stream_successed: "Live stream has be deleted",
+      delete_stream_failed: "Live stream can't be deleted"
     ][response]
   end
 end

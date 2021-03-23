@@ -30,8 +30,8 @@ defmodule KamaitachiGraphQL.LiveStream.Resolver do
     |> packaging(:delete)
   end
 
-  defp packaging(:ok, :complete), do: {:ok, Responses.get(:complete_successed)}
-  defp packaging(_, :complete), do: {:error, Responses.get(:complete_failed)}
+  defp packaging(:ok, :complete), do: {:ok, Responses.get(:complete_stream_successed)}
+  defp packaging(_, :complete), do: {:error, Responses.get(:complete_stream_failed)}
 
   defp packaging({:ok, _rest_all_streams}, :delete),
     do: {:ok, Responses.get(:delete_stream_successed)}
