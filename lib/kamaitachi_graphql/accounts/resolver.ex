@@ -33,12 +33,7 @@ defmodule KamaitachiGraphQL.Accounts.Resolver do
   end
 
   def me(_, _, %{context: %{current_user: user}}),
-    do:
-      {:ok,
-       %{
-         user: user,
-         token: get_token(user.id)
-       }}
+    do: {:ok, %{user: user}}
 
   def me(_, _, _),
     do: {:ok, %{user: nil}}
