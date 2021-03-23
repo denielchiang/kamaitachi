@@ -29,6 +29,8 @@ defmodule KamaitachiGraphQL.Accounts.Types do
     end
 
     field :accounts_me, :session do
+      middleware(Middleware.Authorize, :any)
+
       resolve(&Resolver.me/3)
     end
   end
