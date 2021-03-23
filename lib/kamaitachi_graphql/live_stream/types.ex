@@ -31,6 +31,10 @@ defmodule KamaitachiGraphQL.LiveStream.Types do
       middleware(Middleware.Authorize, :any)
       resolve(&Resolver.list_on_airs/2)
     end
+
+    field :one_idle_stream, :live_stream do
+      resolve(&Resolver.take_one_idle/3)
+    end
   end
 
   object :live_strem_mutations do

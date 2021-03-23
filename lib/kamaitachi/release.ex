@@ -1,4 +1,5 @@
 defmodule Kamaitachi.Release do
+  @moduledoc false
   @app :kamaitachi
 
   def migrate do

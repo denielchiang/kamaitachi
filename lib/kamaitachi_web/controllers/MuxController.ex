@@ -17,13 +17,14 @@ defmodule KamaitachiWeb.MuxController do
   Handle Mux webhooks(Example: https://docs.mux.com/guides/video/listen-for-webhooks)
   """
   def create(conn, params) do
-    with {:ok, msg} <- which_status(params) do
-      Logger.notice(msg)
+    case which_status(params) do
+      {:ok, msg} ->
+        Logger.notice(msg)
 
-      conn
-      |> send_resp(201, msg)
-    else
-      :error ->
+        conn
+        |> send_resp(201, msg)
+
+      _ ->
         Logger.error("Mux pass in params: " <> inspect(params))
 
         send_resp(conn, 500, @handle_failed)

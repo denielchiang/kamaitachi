@@ -7,6 +7,19 @@ defmodule KamaitachiGraphQL.LiveStream.Resolver do
 
   def list_on_airs(params, _), do: Streams.on_airs(params)
 
+  def take_one_idle(_, _, _) do
+    {:ok, streams} = Streams.all_streams()
+
+    [idle | _] =
+      streams
+      |> Enum.filter(&is_stream_idle?/1)
+
+    {:ok, idle}
+  end
+
+  defp is_stream_idle?(%MuxWrapper.EmbeddedSchema.LiveStream{status: "idle"}), do: true
+  defp is_stream_idle?(_), do: false
+
   def complete_live_stream(_, %{live_stream_id: live_stream_id}, _) do
     Streams.complete_live_stream(live_stream_id)
     |> packaging(:complete)

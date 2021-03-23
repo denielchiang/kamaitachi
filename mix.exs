@@ -47,7 +47,7 @@ defmodule Kamaitachi.MixProject do
   defp deps do
     [
       # Phoenix
-      {:phoenix, "~> 1.5.7"},
+      {:phoenix, "~> 1.5.8"},
       {:phoenix_ecto, "~> 4.1"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_view, "~> 0.15.0"},
@@ -97,7 +97,7 @@ defmodule Kamaitachi.MixProject do
       {:excoveralls, "~> 0.13.4"},
 
       # Mux
-      {:mux_wrapper, "~> 0.1.3"}
+      {:mux_wrapper, "~> 0.1.4"}
     ]
   end
 

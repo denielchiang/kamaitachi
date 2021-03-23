@@ -41,7 +41,7 @@ defmodule Kamaitachi.Streams do
   end
 
   def create_live_stream do
-    MuxWrapper.LiveStreams.create_live_stream(get_client())
+    MuxWrapper.LiveStreams.create_public_live_stream(get_client())
     |> broadcast_change([:streams, :created])
   end
 

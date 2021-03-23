@@ -2,7 +2,7 @@ defmodule KamaitachiGraphQL.Accounts.Resolver do
   @moduledoc """
   Accounts Resolver context
   """
-  alias Kamaitachi.{Accounts, General.Responses, Streams}
+  alias Kamaitachi.{Accounts, General.Responses}
 
   def login(_, %{email: email, password: password}, _) do
     with {:ok, user} <- Accounts.authenticate_user(email, password) do
@@ -34,8 +34,7 @@ defmodule KamaitachiGraphQL.Accounts.Resolver do
              KamaitachiWeb.Endpoint,
              "user sesion",
              user.id
-           ),
-         live_stream: create_live_stream()
+           )
        }}
 
   def me(_, _, _),
@@ -43,10 +42,4 @@ defmodule KamaitachiGraphQL.Accounts.Resolver do
 
   def all_users(_, _, _),
     do: {:ok, Accounts.list_users()}
-
-  defp create_live_stream do
-    {:ok, stream} = Streams.create_live_stream()
-
-    stream
-  end
 end

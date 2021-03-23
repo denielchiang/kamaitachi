@@ -23,12 +23,12 @@
   </table>
 <hr>
 <%= for stream <- @on_airs do %>
-  <div>
+  <div style="margin:auto;">
     <div>Stream key: <%= stream.stream_key %></div>
     <div>Status: <%= stream.status %></div>
     <%= for playback_id <- stream.playback_ids do %>
       <div id="<%= playback_id.id %>_div" phx-hook="HLSUrl" phx-update="ignore">
-        <video id="<%= playback_id.id %>" controls></video>
+        <video id="<%= playback_id.id %>" width="320" height="240" controls></video>
       </div>
     <% end %>
   </div>
