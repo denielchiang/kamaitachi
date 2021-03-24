@@ -13,6 +13,12 @@ config :kamaitachi, KamaitachiWeb.Endpoint,
   url: [host: System.get_env("HOSTNAME") || "localhost", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
+# Mux development token
+config :mux,
+  access_token_id: "d95f4229-9df8-4166-91ab-c95fd97e545e",
+  access_token_secret:
+    "hAeFs4AgMRJngUNeN8nJlnLGzKO4e56W6ktxTpFryWyBwLklLN+oZQpgmcmojcPKuhhIgxulSCX"
+
 # Do not print debug messages in production
 config :logger, level: :info
 
