@@ -4,7 +4,7 @@ defmodule Kamaitachi.MixProject do
   def project do
     [
       app: :kamaitachi,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
       test_paths: ["test"],
