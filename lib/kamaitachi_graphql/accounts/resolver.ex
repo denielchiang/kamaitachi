@@ -5,13 +5,14 @@ defmodule KamaitachiGraphQL.Accounts.Resolver do
   alias Kamaitachi.{Accounts, General.Responses}
 
   def login(_, %{email: email, password: password}, _) do
-    with {:ok, user} <- Accounts.authenticate_user(email, password) do
-      {:ok,
-       %{
-         user: user,
-         token: get_token(user.id)
-       }}
-    else
+    case Accounts.authenticate_user(email, password) do
+      {:ok, user} ->
+        {:ok,
+         %{
+           user: user,
+           token: get_token(user.id)
+         }}
+
       {:error, _reason} ->
         {:error, Responses.get(:user_authorize_failed)}
     end
