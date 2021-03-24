@@ -18,6 +18,12 @@ db_port = System.get_env("DATABASE_PORT") || "5432"
 db_url =
   "ecto://#{db_username}:#{db_password}@#{db_host}:#{db_port}/#{db_database}?sslmode=require"
 
+# Mux development token
+config :mux,
+  access_token_id: "d95f4229-9df8-4166-91ab-c95fd97e545e",
+  access_token_secret:
+    "hAeFs4AgMRJngUNeN8nJlnLGzKO4e56W6ktxTpFryWyBwLklLN+oZQpgmcmojcPKuhhIgxulSCX"
+
 config :kamaitachi,
   app_domain: "http://#{System.get_env("HOSTNAME")}:3000"
 

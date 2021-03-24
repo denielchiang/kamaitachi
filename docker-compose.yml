@@ -7,7 +7,7 @@ networks:
       
 services:
   app:
-    image: deniel79/kamaitachi:0.1.0
+    image: deniel79/kamaitachi:0.1.1
     ports:
       - "80:4000"
     env_file:
